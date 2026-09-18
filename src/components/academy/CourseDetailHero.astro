@@ -1,0 +1,164 @@
+---
+import Button from "../ui/Button.astro";
+import ExpertiseTags from "../ui/ExpertiseTags.astro";
+import { courseDetail } from "../../data/courseDetail";
+---
+
+<section class="course-hero reveal" data-reveal aria-labelledby="course-hero-heading">
+  <div class="container course-hero__grid">
+    <div class="course-hero__content">
+      <a class="course-hero__eyebrow" href="/easy-automation-academy">{courseDetail.academyLabel}</a>
+      <h1 id="course-hero-heading" class="course-hero__title">{courseDetail.title}</h1>
+      <div class="course-hero__metadata">
+        <ExpertiseTags tags={courseDetail.heroMetadata} />
+      </div>
+      <div class="course-hero__actions">
+        <p class="course-hero__price">
+          {courseDetail.price}
+          <span class="course-hero__price-label">Complete Course Access</span>
+        </p>
+        <div class="course-hero__buttons">
+          <Button href={courseDetail.payhipOrderUrl} variant="primary" external>Continue to Payhip</Button>
+          <Button href="/easy-automation-academy" variant="secondary">Back to Academy</Button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-hero__motif" aria-hidden="true">
+      <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid meet">
+        <g stroke="#1B1F23" stroke-width="1" opacity="0.06">
+          <line x1="0" y1="60" x2="400" y2="60" />
+          <line x1="0" y1="400" x2="400" y2="400" />
+          <line x1="60" y1="0" x2="60" y2="460" />
+          <line x1="340" y1="0" x2="340" y2="460" />
+        </g>
+        <g stroke="#AA5E2B" stroke-width="1.5" fill="none" opacity="0.55" stroke-linecap="round">
+          <path d="M60 150 H180 V90 H300" />
+          <path d="M180 150 V260 H120 V330" />
+          <path d="M300 90 V220 H240 V330 H340" />
+          <rect x="164" y="134" width="32" height="32" opacity="0.85" />
+          <circle cx="60" cy="150" r="5" fill="#AA5E2B" stroke="none" />
+          <circle cx="300" cy="90" r="5" fill="#AA5E2B" stroke="none" />
+          <circle cx="120" cy="330" r="5" fill="#AA5E2B" stroke="none" />
+          <circle cx="340" cy="330" r="5" fill="#AA5E2B" stroke="none" />
+        </g>
+        <g stroke="#1B1F23" stroke-width="1" opacity="0.1">
+          <circle cx="60" cy="60" r="3" />
+          <circle cx="340" cy="60" r="3" />
+          <circle cx="60" cy="400" r="3" />
+          <circle cx="340" cy="400" r="3" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-hero {
+    padding-block: calc(var(--space-6) + 80px) var(--space-5);
+    overflow: hidden;
+  }
+
+  .course-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .course-hero__eyebrow {
+    display: inline-block;
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: 500;
+    color: var(--color-accent-primary);
+  }
+
+  .course-hero__eyebrow:hover {
+    color: var(--color-accent-primary-hover);
+  }
+
+  .course-hero__title {
+    max-width: 22ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-h1-size);
+    line-height: var(--text-h1-line);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    color: var(--color-text-primary);
+  }
+
+  .course-hero__metadata {
+    margin-top: var(--space-4);
+  }
+
+  .course-hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .course-hero__price {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-family: var(--font-data);
+    font-size: var(--text-display-l-size);
+    line-height: 1;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .course-hero__price-label {
+    font-family: var(--font-primary);
+    white-space: nowrap;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .course-hero__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .course-hero__motif {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .course-hero__buttons {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .course-hero {
+      padding-block: calc(var(--space-8) + 80px) var(--space-6);
+    }
+
+    .course-hero__grid {
+      grid-template-columns: 6fr 5fr;
+      column-gap: var(--space-6);
+      align-items: center;
+    }
+
+    .course-hero__actions {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .course-hero__motif {
+      display: block;
+    }
+
+    .course-hero__motif svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>

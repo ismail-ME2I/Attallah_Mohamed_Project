@@ -1,0 +1,62 @@
+---
+import { contactTopics } from "../../data/contactTopics";
+---
+
+<div class="contact-topics">
+  <p class="contact-topics__label">What to discuss</p>
+  <ul class="contact-topics__list">
+    {
+      contactTopics.map((topic) => (
+        <li class="contact-topics__item">
+          <span class="contact-topics__item-heading">{topic.heading}</span>
+          <span class="contact-topics__item-description">{topic.description}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .contact-topics {
+    margin-top: var(--space-5);
+  }
+
+  .contact-topics__label {
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: var(--text-label-weight);
+    color: var(--color-text-muted);
+  }
+
+  .contact-topics__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-2);
+  }
+
+  .contact-topics__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-block: var(--space-2);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .contact-topics__item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .contact-topics__item-heading {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .contact-topics__item-description {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import { conversationTopics } from "../../data/conversationTopics";
+---
+
+<section class="conversation-topics reveal" data-reveal aria-labelledby="conversation-topics-heading">
+  <div class="container">
+    <h2 id="conversation-topics-heading" class="conversation-topics__heading">
+      What a Technical Conversation Can Cover
+    </h2>
+    <ol class="conversation-topics__sequence">
+      {
+        conversationTopics.map((topic, index) => (
+          <li class="conversation-topics__item">
+            <span class="conversation-topics__item-index">{String(index + 1).padStart(2, "0")}</span>
+            <h3 class="conversation-topics__item-heading">{topic.heading}</h3>
+            <p class="conversation-topics__item-description">{topic.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .conversation-topics {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .conversation-topics__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  /* Numbered editorial sequence — deliberately distinct from the quieter
+     two-column Audience grid below it on the page. */
+  .conversation-topics__sequence {
+    margin-top: var(--space-4);
+  }
+
+  .conversation-topics__item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: var(--space-3);
+    padding-block: var(--space-3);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .conversation-topics__item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .conversation-topics__item-index {
+    grid-row: 1 / 3;
+    font-family: var(--font-data);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    color: var(--color-accent-primary);
+  }
+
+  .conversation-topics__item-heading {
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .conversation-topics__item-description {
+    max-width: 60ch;
+    margin-top: var(--space-1);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .conversation-topics__item {
+      grid-template-columns: 56px 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .conversation-topics__sequence {
+      margin-top: var(--space-5);
+    }
+  }
+</style>

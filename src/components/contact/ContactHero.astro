@@ -1,0 +1,67 @@
+---
+import ContactTopics from "./ContactTopics.astro";
+
+const supporting =
+  "Have a technical challenge, a question about automation, or something you'd like to discuss? Get in touch and start the conversation.";
+---
+
+<section class="contact-hero reveal" data-reveal aria-labelledby="contact-hero-heading">
+  <div class="container contact-hero__grid">
+    <div class="contact-hero__intro">
+      <h1 id="contact-hero-heading" class="contact-hero__heading">Let's Start a Conversation.</h1>
+      <p class="contact-hero__supporting">{supporting}</p>
+      <ContactTopics />
+    </div>
+    <div class="contact-hero__form-column">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-hero {
+    padding-block: calc(var(--space-6) + 80px) var(--space-4);
+  }
+
+  .contact-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .contact-hero__heading {
+    font-size: var(--text-h1-size);
+    line-height: var(--text-h1-line);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    color: var(--color-text-primary);
+  }
+
+  .contact-hero__supporting {
+    max-width: 60ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-hero__form-column {
+    max-width: 560px;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-hero {
+      padding-block: calc(var(--space-7) + 80px) var(--space-5);
+    }
+
+    .contact-hero__grid {
+      grid-template-columns: 5fr 6fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    .contact-hero__form-column {
+      max-width: none;
+    }
+  }
+</style>

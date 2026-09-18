@@ -1,0 +1,58 @@
+---
+import { courseDetail } from "../../data/courseDetail";
+const { previewVideo } = courseDetail;
+---
+
+<section class="course-preview reveal" data-reveal aria-labelledby="course-preview-heading">
+  <div class="container">
+    <h2 id="course-preview-heading" class="course-preview__heading">{previewVideo.title}</h2>
+    <div class="course-preview__frame">
+      <iframe
+        src={previewVideo.embedUrl}
+        title={previewVideo.title}
+        loading="lazy"
+        allow="encrypted-media; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-preview {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .course-preview__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .course-preview__frame {
+    position: relative;
+    max-width: 800px;
+    margin-top: var(--space-4);
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-background-dark);
+    border-radius: var(--radius-default);
+    overflow: hidden;
+  }
+
+  .course-preview__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .course-preview__frame {
+      margin-top: var(--space-5);
+    }
+  }
+</style>

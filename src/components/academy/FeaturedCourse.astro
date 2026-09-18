@@ -1,0 +1,195 @@
+---
+import Button from "../ui/Button.astro";
+import ExpertiseTags from "../ui/ExpertiseTags.astro";
+import { academyCourses, moreCoursesLabel, moreCoursesSlotCount } from "../../data/academyCourses";
+
+const course = academyCourses[0];
+const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
+---
+
+<section class="featured-course reveal" data-reveal aria-labelledby="featured-course-heading">
+  <div class="container">
+    <h2 id="featured-course-heading" class="featured-course__heading">Courses</h2>
+
+    <article class="featured-course__card">
+      <div class="featured-course__media">
+        <img
+          class="featured-course__image"
+          src={course.cover}
+          alt={course.coverAlt}
+          width="960"
+          height="600"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="featured-course__body">
+        <h3 class="featured-course__title">{course.title}</h3>
+        <p class="featured-course__description">{course.description}</p>
+        <p class="featured-course__meta">{course.duration} · {course.language}</p>
+        <p class="featured-course__format">{course.format}</p>
+        <div class="featured-course__topics">
+          <ExpertiseTags tags={course.topics} />
+        </div>
+        <Button href={course.href} variant="primary" class="featured-course__cta">View Course</Button>
+      </div>
+    </article>
+
+    <div class="featured-course__more">
+      {
+        placeholderSlots.map(() => (
+          <div class="featured-course__placeholder">
+            <span class="featured-course__placeholder-label">{moreCoursesLabel}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-course {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .featured-course__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .featured-course__card {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-4);
+    background-color: var(--color-surface-card);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-radius: var(--radius-default);
+    overflow: hidden;
+  }
+
+  .featured-course__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    /* Matches the placeholder SVG's own background fill so object-fit:
+       contain letterboxing (when the container ratio differs from the
+       artwork's) is seamless rather than showing visible bars. */
+    background-color: var(--color-background-secondary);
+  }
+
+  .featured-course__image {
+    width: 100%;
+    height: 100%;
+    /*
+      contain, not cover: the placeholder artwork's "PLACEHOLDER" caption
+      is anchored bottom-left, not centered, so a centered cover-crop cuts
+      through it whenever the container's aspect ratio differs from the
+      artwork's. contain always shows the complete artwork intact.
+    */
+    object-fit: contain;
+  }
+
+  .featured-course__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  .featured-course__title {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .featured-course__description {
+    max-width: 65ch;
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-secondary);
+  }
+
+  .featured-course__meta {
+    font-family: var(--font-data);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-primary);
+  }
+
+  .featured-course__format {
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    color: var(--color-text-muted);
+  }
+
+  .featured-course__topics {
+    margin-top: var(--space-1);
+  }
+
+  :global(.featured-course__cta) {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  .featured-course__more {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .featured-course__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5) var(--space-3);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-radius: var(--radius-default);
+    text-align: center;
+  }
+
+  .featured-course__placeholder-label {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .featured-course__card {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .featured-course__media {
+      flex: 0 0 42%;
+      aspect-ratio: auto;
+    }
+
+    .featured-course__body {
+      flex: 1;
+      justify-content: center;
+      padding: var(--space-5);
+    }
+
+    .featured-course__more {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-course {
+      padding-block: var(--space-5);
+    }
+
+    .featured-course__card {
+      margin-top: var(--space-5);
+    }
+
+    .featured-course__more {
+      margin-top: var(--space-4);
+    }
+  }
+</style>

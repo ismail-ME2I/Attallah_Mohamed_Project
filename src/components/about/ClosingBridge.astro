@@ -1,0 +1,146 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section class="closing-bridge" aria-labelledby="closing-bridge-heading">
+  <div class="container">
+    <h2 id="closing-bridge-heading" class="closing-bridge__heading reveal" data-reveal>
+      His Experience Takes Two Directions
+    </h2>
+
+    <div class="closing-bridge__paths">
+      <div class="closing-bridge__path reveal" data-reveal>
+        <div class="closing-bridge__path-heading-row">
+          <h3 class="closing-bridge__path-heading">Technical Consulting &amp; Advisory</h3>
+          <span class="closing-bridge__qualifier">(scope &amp; availability to be confirmed)</span>
+        </div>
+        <p class="closing-bridge__path-paragraph">
+          If you're facing a real technical challenge in automation, substation systems, RTU/SCADA, IEC 61850,
+          or data center automation, start a conversation.
+        </p>
+        <Button href="/consulting" variant="secondary" class="closing-bridge__cta">
+          Discuss a Technical Challenge
+        </Button>
+      </div>
+
+      <div class="closing-bridge__path reveal" data-reveal>
+        <h3 class="closing-bridge__path-heading">Easy Automation Academy</h3>
+        <p class="closing-bridge__path-paragraph">
+          Mohammed's field experience, turned into structured, practical courses for engineers who want to
+          understand how automation systems actually work.
+        </p>
+        <Button href="/easy-automation-academy" variant="primary" class="closing-bridge__cta">
+          Explore Easy Automation Academy
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .closing-bridge {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-5);
+  }
+
+  .closing-bridge__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .closing-bridge__paths {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .closing-bridge__path {
+    padding-top: var(--space-4);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .closing-bridge__path-heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--space-2);
+    row-gap: var(--space-1);
+  }
+
+  .closing-bridge__path-heading {
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .closing-bridge__qualifier {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  .closing-bridge__path-paragraph {
+    max-width: 46ch;
+    margin-top: var(--space-2);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-primary);
+  }
+
+  :global(.closing-bridge__cta) {
+    margin-top: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .closing-bridge__paths {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: var(--space-5);
+    }
+
+    .closing-bridge__path {
+      padding-inline-start: var(--space-5);
+      padding-top: 0;
+      border-top: none;
+      border-left: var(--border-width-hairline) solid var(--border-color-default);
+    }
+
+    .closing-bridge__path:first-child {
+      padding-inline-start: 0;
+      border-left: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .closing-bridge {
+      padding-block: var(--space-7);
+    }
+
+    .closing-bridge__paths {
+      margin-top: var(--space-5);
+    }
+  }
+
+  /* Closing section gets a marginally stronger entrance (scoped to this
+     component only — the shared .reveal class elsewhere is untouched) and
+     a heading → left path → right path sequence. Guarded by no-preference
+     so it never fights the global reduced-motion reset (which would
+     otherwise lose to this rule's higher specificity). */
+  @media (prefers-reduced-motion: no-preference) {
+    .closing-bridge__heading.reveal,
+    .closing-bridge__path.reveal {
+      transform: translateY(16px);
+    }
+
+    .closing-bridge__path:nth-child(1) {
+      transition-delay: 100ms;
+    }
+
+    .closing-bridge__path:nth-child(2) {
+      transition-delay: 190ms;
+    }
+  }
+</style>

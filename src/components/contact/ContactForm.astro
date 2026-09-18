@@ -1,0 +1,183 @@
+---
+import { contact } from "../../data/contact";
+---
+
+<div class="contact-form-wrap">
+  <form class="contact-form" id="contact-form" novalidate>
+    <div class="contact-form__field">
+      <label for="contact-name">Name <span class="contact-form__required" aria-hidden="true">*</span></label>
+      <input type="text" id="contact-name" name="name" autocomplete="name" required aria-required="true" />
+      <p class="contact-form__error" id="contact-name-error" role="alert" hidden>Please enter your name.</p>
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-email">Email <span class="contact-form__required" aria-hidden="true">*</span></label>
+      <input type="email" id="contact-email" name="email" autocomplete="email" required aria-required="true" />
+      <p class="contact-form__error" id="contact-email-error" role="alert" hidden>Please enter a valid email address.</p>
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-subject">Subject / Reason for Contact</label>
+      <input type="text" id="contact-subject" name="subject" />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="contact-message">Message <span class="contact-form__required" aria-hidden="true">*</span></label>
+      <textarea id="contact-message" name="message" rows="6" required aria-required="true" />
+      <p class="contact-form__error" id="contact-message-error" role="alert" hidden>Please enter a message.</p>
+    </div>
+
+    <button type="submit" class="contact-form__submit">Send Message</button>
+
+    <p class="contact-form__status" id="contact-form-status" aria-live="polite" hidden>
+      Contact form integration pending — this form is not yet connected to a delivery method. In the meantime,
+      you can reach Mohammed directly via{" "}
+      <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+        LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+      </a>.
+    </p>
+  </form>
+</div>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .contact-form__field label {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .contact-form__required {
+    color: var(--color-accent-primary);
+  }
+
+  .contact-form__field input,
+  .contact-form__field textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: var(--space-2);
+    background-color: var(--color-surface-card);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-radius: var(--radius-default);
+    font-family: var(--font-primary);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-primary);
+  }
+
+  .contact-form__field textarea {
+    resize: vertical;
+  }
+
+  .contact-form__field input:focus-visible,
+  .contact-form__field textarea:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+    border-color: var(--color-accent-primary);
+  }
+
+  .contact-form__field input[aria-invalid="true"],
+  .contact-form__field textarea[aria-invalid="true"] {
+    border-color: var(--color-accent-primary);
+  }
+
+  .contact-form__error {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-accent-primary);
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+    min-height: 48px;
+    padding-inline: var(--space-4);
+    margin-top: var(--space-1);
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-inverse);
+    border: var(--border-width-hairline) solid var(--color-accent-primary);
+    border-radius: var(--radius-default);
+    font-family: var(--font-primary);
+    font-size: var(--text-button-size);
+    font-weight: var(--text-button-weight);
+    transition: background-color var(--duration-fast) var(--easing-hover);
+  }
+
+  .contact-form__submit:hover {
+    background-color: var(--color-accent-primary-hover);
+    border-color: var(--color-accent-primary-hover);
+  }
+
+  .contact-form__status {
+    margin-top: var(--space-1);
+    padding: var(--space-2);
+    background-color: var(--color-background-secondary);
+    border-radius: var(--radius-default);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-form__status a {
+    color: var(--color-accent-primary);
+  }
+
+  .contact-form__status a:hover {
+    color: var(--color-accent-primary-hover);
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("contact-form-status");
+
+  if (form && status) {
+    const fields: { input: string; error: string }[] = [
+      { input: "contact-name", error: "contact-name-error" },
+      { input: "contact-email", error: "contact-email-error" },
+      { input: "contact-message", error: "contact-message-error" },
+    ];
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      status.hidden = true;
+
+      let firstInvalid: HTMLElement | null = null;
+      let allValid = true;
+
+      for (const { input, error } of fields) {
+        const el = document.getElementById(input) as HTMLInputElement | HTMLTextAreaElement | null;
+        const errorEl = document.getElementById(error);
+        if (!el || !errorEl) continue;
+
+        const valid = el.checkValidity();
+        el.setAttribute("aria-invalid", valid ? "false" : "true");
+        errorEl.hidden = valid;
+
+        if (!valid) {
+          allValid = false;
+          if (!firstInvalid) firstInvalid = el;
+        }
+      }
+
+      if (!allValid) {
+        firstInvalid?.focus();
+        return;
+      }
+
+      // No real delivery endpoint exists yet — honest, visible status only.
+      status.hidden = false;
+    });
+  }
+</script>

@@ -1,0 +1,71 @@
+---
+import Button from "../ui/Button.astro";
+
+const supporting =
+  "Technical conversations for real-world challenges across automation, substation systems, RTU/SCADA, IEC 61850, and data center automation.";
+---
+
+<section class="consulting-hero reveal" data-reveal aria-labelledby="consulting-hero-heading">
+  <div class="container">
+    <div class="consulting-hero__heading-row">
+      <h1 id="consulting-hero-heading" class="consulting-hero__heading">Technical Consulting &amp; Advisory</h1>
+      <span class="consulting-hero__qualifier">(scope &amp; availability to be confirmed)</span>
+    </div>
+    <p class="consulting-hero__supporting">{supporting}</p>
+    <Button href="/contact" variant="primary" class="consulting-hero__cta">Discuss a Technical Challenge</Button>
+  </div>
+</section>
+
+<style>
+  .consulting-hero {
+    padding-block: calc(var(--space-6) + 80px) var(--space-4);
+  }
+
+  .consulting-hero__heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--space-2);
+    row-gap: var(--space-1);
+  }
+
+  .consulting-hero__heading {
+    font-size: var(--text-h1-size);
+    line-height: var(--text-h1-line);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    color: var(--color-text-primary);
+  }
+
+  .consulting-hero__qualifier {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  .consulting-hero__supporting {
+    max-width: 60ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-secondary);
+  }
+
+  :global(.consulting-hero__cta) {
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 1024px) {
+    .consulting-hero {
+      padding-block: calc(var(--space-7) + 80px) var(--space-5);
+    }
+
+    .consulting-hero__supporting {
+      margin-top: var(--space-4);
+    }
+
+    :global(.consulting-hero__cta) {
+      margin-top: var(--space-5);
+    }
+  }
+</style>

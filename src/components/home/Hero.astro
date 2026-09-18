@@ -1,0 +1,211 @@
+---
+import Button from "../ui/Button.astro";
+
+const headline = "Automation Expert. Educator. Open to New Technical Challenges.";
+const statement =
+  "15+ years of industrial and energy automation experience — from substation systems to data centers — now shared through Easy Automation Academy, and open to real technical challenges through consulting conversations.";
+---
+
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <h1 id="hero-headline" class="hero__headline">{headline}</h1>
+      <p class="hero__statement">{statement}</p>
+      <div class="hero__actions">
+        <Button href="/easy-automation-academy" variant="primary">
+          Explore Easy Automation Academy
+        </Button>
+        <Button href="/consulting" variant="secondary">Discuss a Technical Challenge</Button>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <div class="hero__media-frame">
+        <img
+          class="hero__image"
+          src="/images/hero/hero-placeholder.svg"
+          alt="Placeholder graphic marking the space reserved for real Saudi substation project photography, to be added once the asset is available."
+          width="960"
+          height="1200"
+          loading="eager"
+          decoding="async"
+        />
+        <span class="hero__media-badge">Placeholder — real project photography pending</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background-color: var(--color-background-primary);
+    /* Top value = fixed-nav clearance (80px, matches Navigation.astro's
+       .site-nav__inner min-height) + intentional breathing space below it. */
+    padding-block: calc(var(--space-5) + 80px) var(--space-6);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    padding-inline: var(--container-margin-mobile);
+    max-width: 640px;
+    animation: hero-content-in var(--duration-standard) var(--easing-standard) both;
+  }
+
+  .hero__headline {
+    font-size: var(--text-display-xl-size);
+    line-height: var(--text-display-xl-line);
+    font-weight: var(--text-display-xl-weight);
+    letter-spacing: var(--text-display-xl-tracking);
+    color: var(--color-text-primary);
+  }
+
+  .hero__statement {
+    max-width: 58ch;
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-secondary);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .hero__actions :global(.btn) {
+    width: 100%;
+  }
+
+  .hero__media {
+    margin-top: var(--space-5);
+    padding-inline: var(--container-margin-mobile);
+    animation: hero-media-in var(--duration-standard) var(--easing-standard) both;
+    animation-delay: 80ms;
+  }
+
+  .hero__media-frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-default);
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__media-badge {
+    position: absolute;
+    left: var(--space-2);
+    bottom: var(--space-2);
+    background-color: var(--color-background-primary);
+    color: var(--color-text-secondary);
+    border: var(--border-width-hairline) solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: var(--text-label-weight);
+  }
+
+  @keyframes hero-content-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-media-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__content,
+    .hero__media {
+      animation-name: hero-fade-in;
+      animation-duration: 1ms;
+    }
+  }
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 480px) {
+    .hero__actions {
+      flex-direction: row;
+    }
+
+    .hero__actions :global(.btn) {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      min-height: max(640px, 85vh);
+      padding-block: calc(var(--space-6) + var(--space-2) + 80px) var(--space-8);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero__inner {
+      width: 100%;
+      grid-template-columns: 55fr 45fr;
+      align-items: stretch;
+      gap: var(--space-5);
+    }
+
+    .hero__content {
+      /* The right visual stretches to the row's full height (taller than the
+         text block), so without this the text would center against that
+         height instead of anchoring to the top of the row. */
+      justify-content: flex-start;
+      padding-inline-start: var(--container-margin-desktop);
+      padding-inline-end: 0;
+      max-width: 600px;
+    }
+
+    .hero__media {
+      margin-top: 0;
+      padding-inline: 0;
+      clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hero__media-frame {
+      height: 100%;
+      aspect-ratio: auto;
+      border-radius: 0;
+    }
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactHero from "../components/contact/ContactHero.astro";
+import ContactForm from "../components/contact/ContactForm.astro";
+import ContactChannels from "../components/contact/ContactChannels.astro";
+import CTASection from "../components/ui/CTASection.astro";
+---
+
+<BaseLayout
+  title="Contact Mohammed Attallah — Start a Conversation"
+  description="Have a technical challenge, a question about automation, or something you'd like to discuss? Get in touch and start the conversation with Mohammed Attallah."
+>
+  <ContactHero>
+    <ContactForm />
+  </ContactHero>
+  <ContactChannels />
+  <CTASection
+    heading="Looking for Technical Advisory Context?"
+    paragraph="Explore the areas of expertise and the kinds of technical challenges that can be discussed."
+    ctaLabel="Explore Consulting"
+    ctaHref="/consulting"
+    ctaVariant="secondary"
+  />
+  <CTASection
+    heading="Interested in Learning?"
+    paragraph="Explore Easy Automation Academy and the practical automation courses built from Mohammed's field experience."
+    ctaLabel="Explore the Academy"
+    ctaHref="/easy-automation-academy"
+    ctaVariant="secondary"
+  />
+</BaseLayout>

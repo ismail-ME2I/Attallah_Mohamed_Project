@@ -1,0 +1,87 @@
+---
+import Button from "../ui/Button.astro";
+import { courseDetail } from "../../data/courseDetail";
+---
+
+<section class="course-enrollment reveal" data-reveal aria-labelledby="course-enrollment-heading">
+  <div class="container course-enrollment__inner">
+    <span class="course-enrollment__mark" role="presentation"></span>
+    <h2 id="course-enrollment-heading" class="course-enrollment__heading">Enrollment</h2>
+    <p class="course-enrollment__price">{courseDetail.price}</p>
+    <p class="course-enrollment__note">Complete Course Access. Enrollment continues on Payhip.</p>
+    <div class="course-enrollment__actions">
+      <Button href={courseDetail.payhipOrderUrl} variant="primary" external>Continue to Payhip</Button>
+      <Button href="/easy-automation-academy" variant="secondary">Back to Academy</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-enrollment {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-7);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .course-enrollment__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .course-enrollment__mark {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-accent-primary);
+  }
+
+  .course-enrollment__heading {
+    margin-top: var(--space-3);
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .course-enrollment__price {
+    margin-top: var(--space-1);
+    font-family: var(--font-data);
+    font-size: var(--text-display-l-size);
+    line-height: var(--text-display-l-line);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .course-enrollment__note {
+    max-width: 50ch;
+    margin-top: var(--space-2);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted);
+  }
+
+  .course-enrollment__actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  @media (min-width: 480px) {
+    .course-enrollment__actions {
+      flex-direction: row;
+      max-width: none;
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .course-enrollment {
+      padding-block: var(--space-8);
+    }
+  }
+</style>

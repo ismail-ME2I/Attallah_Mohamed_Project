@@ -1,0 +1,161 @@
+/*
+  Design tokens — implements docs/D06_DESIGN_SYSTEM_IMPLEMENTATION.md, Section 5.
+  Values are the preliminary tokens approved in D06; do not add a second accent
+  or new visual tokens here without an updated design-system decision.
+*/
+
+:root {
+  /* Color — backgrounds */
+  --color-background-primary: #f6f7f8;
+  --color-background-secondary: #edeff1;
+  --color-background-dark: #14171a;
+  --color-surface-card: #ffffff;
+
+  /* Color — text */
+  --color-text-primary: #1b1f23;
+  --color-text-secondary: #4a4f55;
+  --color-text-muted: #7a7f85;
+  --color-text-inverse: #f6f7f8;
+  --color-text-inverse-muted: #b8bcc0;
+
+  /* Color — accent (single accent only)
+     accent-primary darkened from #b4642e to #aa5e2b (same hue 24.18° / saturation 59.29%,
+     lightness reduced 44.31% -> 41.87%) — the minimum change needed so text-inverse on
+     accent-primary reaches WCAG AA 4.5:1 (previously ~4.08:1). accent-primary-hover
+     shifted by the same lightness delta to preserve the original hover contrast step. */
+  --color-accent-primary: #aa5e2b;
+  --color-accent-primary-hover: #915125;
+
+  /* Color — borders / focus */
+  --color-border-subtle: #dfe2e5;
+  --color-border-subtle-dark: rgba(255, 255, 255, 0.12);
+  --color-focus-ring: #b4642e;
+
+  /* Typography — font stacks */
+  --font-primary: "Suisse Int'l", "Neue Haas Grotesk", "Inter", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", "SF Mono", monospace;
+
+  /* Typography — desktop scale (Section 6) */
+  --text-display-xl-size: 64px;
+  --text-display-xl-line: 72px;
+  --text-display-xl-weight: 600;
+  --text-display-xl-tracking: -0.01em;
+
+  --text-display-l-size: 48px;
+  --text-display-l-line: 56px;
+  --text-display-l-weight: 600;
+  --text-display-l-tracking: -0.01em;
+
+  --text-h1-size: 40px;
+  --text-h1-line: 48px;
+  --text-h1-weight: 600;
+  --text-h1-tracking: -0.005em;
+
+  --text-h2-size: 28px;
+  --text-h2-line: 36px;
+  --text-h2-weight: 600;
+  --text-h2-tracking: 0;
+
+  --text-h3-size: 20px;
+  --text-h3-line: 28px;
+  --text-h3-weight: 500;
+  --text-h3-tracking: 0;
+
+  --text-body-lg-size: 18px;
+  --text-body-lg-line: 28px;
+  --text-body-lg-weight: 400;
+
+  --text-body-size: 16px;
+  --text-body-line: 26px;
+  --text-body-weight: 400;
+
+  --text-body-sm-size: 14px;
+  --text-body-sm-line: 22px;
+  --text-body-sm-weight: 400;
+
+  --text-label-size: 13px;
+  --text-label-line: 18px;
+  --text-label-weight: 500;
+
+  --text-button-size: 16px;
+  --text-button-weight: 500;
+
+  --text-nav-size: 15px;
+  --text-nav-weight: 400;
+
+  /* Spacing scale (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-8: 128px;
+
+  /* Borders */
+  --border-width-hairline: 1px;
+  --border-color-default: var(--color-border-subtle);
+  --border-color-inverse: var(--color-border-subtle-dark);
+
+  /* Radii — no larger radius token exists by design */
+  --radius-sm: 2px;
+  --radius-default: 4px;
+
+  /* Shadows — none by default; one subtle shadow reserved for card hover */
+  --shadow-none: none;
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* Containers */
+  --container-max: 1280px;
+  --container-reading: 720px;
+  --container-margin-desktop: 64px;
+  --container-margin-tablet: 40px;
+  --container-margin-mobile: 20px;
+
+  /* Grid */
+  --grid-columns-desktop: 12;
+  --grid-gutter-desktop: 24px;
+  --grid-columns-tablet: 8;
+  --grid-gutter-tablet: 20px;
+  --grid-columns-mobile: 4;
+  --grid-gutter-mobile: 16px;
+
+  /* Motion */
+  --duration-fast: 180ms;
+  --duration-standard: 550ms;
+  --duration-expressive: 750ms;
+  --easing-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-hover: ease-in-out;
+}
+
+/* Mobile typography overrides (Section 6, <768px) */
+@media (max-width: 767px) {
+  :root {
+    --text-display-xl-size: 36px;
+    --text-display-xl-line: 44px;
+
+    --text-display-l-size: 32px;
+    --text-display-l-line: 40px;
+
+    --text-h1-size: 28px;
+    --text-h1-line: 36px;
+
+    --text-h2-size: 22px;
+    --text-h2-line: 30px;
+
+    --text-h3-size: 18px;
+    --text-h3-line: 26px;
+
+    --text-body-lg-size: 17px;
+    --text-body-lg-line: 27px;
+
+    --text-body-size: 16px;
+    --text-body-line: 25px;
+
+    --text-body-sm-size: 14px;
+    --text-body-sm-line: 21px;
+
+    --text-nav-size: 15px;
+  }
+}

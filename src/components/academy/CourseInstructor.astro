@@ -1,0 +1,105 @@
+---
+import Button from "../ui/Button.astro";
+import { courseDetail } from "../../data/courseDetail";
+---
+
+<section class="course-instructor reveal" data-reveal aria-labelledby="course-instructor-heading">
+  <div class="container course-instructor__grid">
+    <div class="course-instructor__portrait">
+      <img
+        class="course-instructor__image"
+        src="/images/portrait/mohammed-attallah-automation-technical-leader.avif"
+        alt="Mohammed Attallah, Automation Technical Leader"
+        width="1000"
+        height="1250"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="course-instructor__content">
+      <h2 id="course-instructor-heading" class="course-instructor__heading">Instructor</h2>
+      <p class="course-instructor__name">Mohammed Attallah</p>
+      <p class="course-instructor__bio">{courseDetail.instructorBio}</p>
+      <Button href="/about" variant="text">About Mohammed</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-instructor {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-5);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .course-instructor__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .course-instructor__portrait {
+    width: 96px;
+  }
+
+  .course-instructor__image {
+    display: block;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  .course-instructor__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .course-instructor__name {
+    margin-top: var(--space-3);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .course-instructor__bio {
+    max-width: 65ch;
+    margin-top: var(--space-2);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-secondary);
+  }
+
+  .course-instructor :global(.btn--text) {
+    margin-top: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .course-instructor__grid {
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: var(--space-5);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .course-instructor {
+      padding-block: var(--space-6);
+    }
+
+    .course-instructor__portrait {
+      width: 120px;
+    }
+
+    .course-instructor__image {
+      height: 150px;
+    }
+
+    .course-instructor__bio {
+      margin-top: var(--space-3);
+    }
+  }
+</style>

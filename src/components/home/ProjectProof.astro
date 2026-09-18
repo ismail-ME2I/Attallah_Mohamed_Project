@@ -1,0 +1,171 @@
+---
+import Button from "../ui/Button.astro";
+
+const caption =
+  "Mohammed's experience includes work on the successful energization of a 132/33/13.8 kV substation in Saudi Arabia, part of the Saudi National Grid — spanning SCADA/HMI, IEC 61850 configuration, and site commissioning.";
+
+const highlights = [
+  { accent: "132/33/13.8 kV", rest: " Substation Energization" },
+  { accent: "", rest: "Saudi National Grid" },
+  { accent: "", rest: "SCADA/HMI & IEC 61850 Commissioning" },
+];
+---
+
+<section class="project-proof reveal" data-reveal aria-labelledby="project-proof-heading">
+  <div class="project-proof__media">
+    <img
+      class="project-proof__image"
+      src="/images/hero/hero-placeholder.svg"
+      alt="Placeholder graphic marking the space reserved for the real Saudi substation project photograph, to be added once the asset is available."
+      width="960"
+      height="1200"
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="project-proof__media-badge">Placeholder — real project photography pending</span>
+  </div>
+
+  <div class="project-proof__text">
+    <h2 id="project-proof-heading" class="visually-hidden">Real-World Project Proof</h2>
+    <p class="project-proof__caption">{caption}</p>
+
+    <ul class="project-proof__highlights">
+      {
+        highlights.map((h) => (
+          <li class="project-proof__highlight">
+            {h.accent && <span class="project-proof__highlight-accent">{h.accent}</span>}
+            {h.rest}
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button href="/about" variant="text" class="project-proof__link">
+      See the full project scope
+    </Button>
+  </div>
+</section>
+
+<style>
+  .project-proof {
+    scroll-margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--color-background-dark);
+  }
+
+  .project-proof__media {
+    /* Portrait-friendly crop on mobile (D06 Section 17) — the full project
+       photo is the dominant element here, unlike Hero's landscape 4:3 strip. */
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .project-proof__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.03);
+    transition: transform var(--duration-expressive) var(--easing-standard);
+  }
+
+  .project-proof.is-visible .project-proof__image {
+    transform: scale(1);
+  }
+
+  .project-proof__media-badge {
+    position: absolute;
+    left: var(--space-2);
+    bottom: var(--space-2);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-inverse-muted);
+    border: var(--border-width-hairline) solid var(--border-color-inverse);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: var(--text-label-weight);
+  }
+
+  .project-proof__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-6) var(--container-margin-mobile);
+    opacity: 0;
+    transition: opacity var(--duration-expressive) var(--easing-standard);
+    transition-delay: 120ms;
+  }
+
+  .project-proof.is-visible .project-proof__text {
+    opacity: 1;
+  }
+
+  .project-proof__caption {
+    max-width: 46ch;
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-inverse);
+  }
+
+  .project-proof__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-1);
+  }
+
+  .project-proof__highlight {
+    font-family: var(--font-data);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-inverse);
+  }
+
+  .project-proof__highlight-accent {
+    /* accent-on-dark is ~3.7:1 at the base h3 weight (500) — below the 4.5:1
+       normal-text AA threshold. Bumping to 700 qualifies it as WCAG "large
+       text" (>=3:1 required), without introducing a second accent color. */
+    font-weight: 700;
+    color: var(--color-accent-primary);
+  }
+
+  /*
+    :global — Button.astro renders the <a>, so it carries Button's own scope id.
+    Class repeated to raise specificity above Button's own .btn--text[data-astro-cid] rule.
+  */
+  :global(a.project-proof__link.project-proof__link) {
+    margin-top: var(--space-2);
+    align-self: flex-start;
+    color: var(--color-text-inverse-muted);
+  }
+
+  :global(a.project-proof__link.project-proof__link:hover) {
+    color: var(--color-accent-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-proof__image {
+      transform: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-proof {
+      grid-template-columns: 58fr 42fr;
+      min-height: 640px;
+    }
+
+    .project-proof__media {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+
+    .project-proof__text {
+      padding: var(--space-7) var(--container-margin-desktop) var(--space-7) var(--space-5);
+    }
+  }
+</style>

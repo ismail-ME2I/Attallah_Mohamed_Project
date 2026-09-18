@@ -1,0 +1,79 @@
+---
+import { courseDetail } from "../../data/courseDetail";
+---
+
+<section class="learning-outcomes reveal" data-reveal aria-labelledby="learning-outcomes-heading">
+  <div class="container">
+    <h2 id="learning-outcomes-heading" class="learning-outcomes__heading">What You'll Learn</h2>
+    <ul class="learning-outcomes__list">
+      {courseDetail.learningOutcomes.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .learning-outcomes {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .learning-outcomes__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .learning-outcomes__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: var(--space-4);
+  }
+
+  .learning-outcomes__list li {
+    position: relative;
+    padding-block: var(--space-2);
+    padding-left: var(--space-3);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-primary);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .learning-outcomes__list li:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .learning-outcomes__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(var(--space-2) + 0.65em);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-accent-primary);
+  }
+
+  .learning-outcomes__list li:first-child::before {
+    top: 0.65em;
+  }
+
+  @media (min-width: 768px) {
+    .learning-outcomes__list {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: var(--space-5);
+    }
+
+    .learning-outcomes__list li:nth-child(2) {
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .learning-outcomes__list li:nth-child(2)::before {
+      top: 0.65em;
+    }
+  }
+</style>

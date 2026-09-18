@@ -1,0 +1,143 @@
+---
+import { contact } from "../../data/contact";
+
+/*
+  Sprint 07.1: this section is only for genuinely "direct" contact methods
+  (email/phone/WhatsApp/booking). LinkedIn and YouTube already live in the
+  Footer on every page, so their presence alone does not justify showing
+  this section — it renders nothing until at least one direct channel is
+  confirmed, rather than exposing a "[Contact detail to be provided]"
+  placeholder to visitors. The underlying data fields stay in place.
+*/
+const hasDirectChannel = Boolean(contact.email || contact.phone || contact.whatsapp || contact.bookingUrl);
+---
+
+{
+  hasDirectChannel && (
+    <section class="contact-channels reveal" data-reveal aria-labelledby="contact-channels-heading">
+      <div class="container">
+        <h2 id="contact-channels-heading" class="contact-channels__heading">
+          Direct Contact Channels
+        </h2>
+        <dl class="contact-channels__list">
+          {contact.email && (
+            <div class="contact-channels__item">
+              <dt>Email</dt>
+              <dd>
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              </dd>
+            </div>
+          )}
+          {contact.phone && (
+            <div class="contact-channels__item">
+              <dt>Phone</dt>
+              <dd>
+                <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+              </dd>
+            </div>
+          )}
+          {contact.whatsapp && (
+            <div class="contact-channels__item">
+              <dt>WhatsApp</dt>
+              <dd>
+                <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
+                  {contact.whatsapp}
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </dd>
+            </div>
+          )}
+          {contact.bookingUrl && (
+            <div class="contact-channels__item">
+              <dt>Booking</dt>
+              <dd>
+                <a href={contact.bookingUrl} target="_blank" rel="noopener noreferrer">
+                  Schedule a time
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </dd>
+            </div>
+          )}
+          <div class="contact-channels__item">
+            <dt>LinkedIn</dt>
+            <dd>
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+                View Profile
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </dd>
+          </div>
+          <div class="contact-channels__item">
+            <dt>YouTube</dt>
+            <dd>
+              <a href={contact.youtube} target="_blank" rel="noopener noreferrer">
+                View Channel
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .contact-channels {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .contact-channels__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .contact-channels__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-4);
+  }
+
+  .contact-channels__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: var(--space-3);
+    padding-block: var(--space-2);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .contact-channels__item:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .contact-channels__item dt {
+    flex: 0 0 120px;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .contact-channels__item dd {
+    margin: 0;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+  }
+
+  .contact-channels__item a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-channels__item a:hover {
+    color: var(--color-accent-primary);
+  }
+</style>

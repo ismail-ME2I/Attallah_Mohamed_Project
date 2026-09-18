@@ -1,0 +1,76 @@
+---
+import type { Fact } from "../../data/authority";
+
+interface Props {
+  facts: Fact[];
+}
+
+const { facts } = Astro.props;
+---
+
+<ul class="fact-strip">
+  {
+    facts.map((fact) => (
+      <li class="fact-strip__item">
+        <span class="fact-strip__value">{fact.value}</span>
+        {fact.label && <span class="fact-strip__label">{fact.label}</span>}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  /* Fact strip — D06 Section 14. Hairline-divided list, never cards/boxes/icons. */
+  .fact-strip {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact-strip__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-block: var(--space-2);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .fact-strip__item:first-child {
+    border-top: none;
+    padding-block-start: 0;
+  }
+
+  .fact-strip__value {
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .fact-strip__label {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .fact-strip {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: var(--space-3);
+    }
+
+    .fact-strip__item {
+      flex: 0 1 auto;
+      padding-block: 0;
+      padding-inline: var(--space-3);
+      border-top: none;
+      border-left: var(--border-width-hairline) solid var(--border-color-default);
+    }
+
+    .fact-strip__item:first-child {
+      padding-inline-start: 0;
+      border-left: none;
+    }
+  }
+</style>

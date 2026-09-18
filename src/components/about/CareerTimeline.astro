@@ -1,0 +1,171 @@
+---
+import { careerTimeline } from "../../data/timeline";
+---
+
+<section class="timeline-section" aria-labelledby="timeline-heading">
+  <div class="container">
+    <h2 id="timeline-heading" class="timeline-section__heading reveal" data-reveal>
+      The Journey
+    </h2>
+    <ol class="timeline">
+      {
+        careerTimeline.map((entry) => (
+          <li class="timeline__entry reveal" data-reveal>
+            <div class="timeline__period">{entry.period}</div>
+            <div class="timeline__marker" aria-hidden="true" />
+            <div class="timeline__content">
+              {entry.role ? (
+                <>
+                  <h3 class="timeline__role">{entry.role}</h3>
+                  <p class="timeline__org">
+                    {entry.organization}
+                    {entry.location && <> · {entry.location}</>}
+                  </p>
+                </>
+              ) : (
+                <h3 class="timeline__role timeline__role--org-only">
+                  {entry.organization}
+                  {entry.location && <> · {entry.location}</>}
+                </h3>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .timeline-section__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: var(--space-5);
+  }
+
+  .timeline__entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    padding-block: var(--space-4);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .timeline__entry:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .timeline__period {
+    grid-column: 1;
+    font-family: var(--font-data);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  .timeline__marker {
+    display: none;
+  }
+
+  .timeline__content {
+    grid-column: 2;
+  }
+
+  .timeline__role {
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  /* Entries with no confirmed job title (e.g. the pre-2011 role) show the
+     organization name alone, de-emphasized relative to a named title. */
+  .timeline__role--org-only {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .timeline__org {
+    margin-top: var(--space-1);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .timeline__entry {
+      grid-template-columns: 140px auto 1fr;
+      column-gap: var(--space-4);
+    }
+
+    .timeline__period {
+      padding-top: 2px;
+    }
+
+    .timeline__marker {
+      position: relative;
+      display: block;
+      grid-column: 2;
+      width: 8px;
+      height: 8px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background-color: var(--color-accent-primary);
+      z-index: 1;
+    }
+
+    .timeline__content {
+      grid-column: 3;
+    }
+
+    /* Restrained connecting rule through the markers — reinforces the
+       timeline as one continuous thread rather than five separate rows.
+       Drawn immediately (not animated) to avoid double-fading against the
+       independently staggered entries below. */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(140px + var(--space-4) + 4px);
+      width: var(--border-width-hairline);
+      background-color: var(--border-color-default);
+    }
+  }
+
+  /* Entries reveal with a small sequential stagger as they enter the
+     viewport. Delay rules only exist under no-preference so reduced-motion
+     users never wait on a lingering transition-delay. */
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline__entry:nth-child(2) {
+      transition-delay: 90ms;
+    }
+
+    .timeline__entry:nth-child(3) {
+      transition-delay: 180ms;
+    }
+
+    .timeline__entry:nth-child(4) {
+      transition-delay: 270ms;
+    }
+
+    .timeline__entry:nth-child(5) {
+      transition-delay: 360ms;
+    }
+  }
+</style>

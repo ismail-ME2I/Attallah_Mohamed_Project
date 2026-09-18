@@ -1,0 +1,322 @@
+---
+import Button from "../ui/Button.astro";
+
+const navItems = [
+  { label: "About", href: "/about" },
+  { label: "Consulting", href: "/consulting" },
+  { label: "Easy Automation Academy", href: "/easy-automation-academy" },
+  { label: "Contact", href: "/contact" },
+];
+
+const ctaHref = "/contact";
+const ctaLabel = "Start a Conversation";
+---
+
+<header class="site-nav" id="site-nav">
+  <div class="site-nav__inner container">
+    <a href="/" class="site-nav__wordmark">Mohammed Attallah</a>
+
+    <nav class="site-nav__links" aria-label="Primary">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-nav__cta">
+      <Button href={ctaHref} variant="secondary">{ctaLabel}</Button>
+    </div>
+
+    <button
+      class="site-nav__toggle"
+      id="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-overlay"
+      aria-label="Open menu"
+    >
+      <span class="site-nav__toggle-bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <div class="nav-overlay" id="nav-overlay" data-open="false">
+    <nav class="nav-overlay__links" aria-label="Mobile">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="nav-overlay__cta">
+      <Button href={ctaHref} variant="primary" class="nav-overlay__cta-button">
+        {ctaLabel}
+      </Button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 50;
+    background-color: transparent;
+    border-bottom: var(--border-width-hairline) solid transparent;
+    transition: background-color var(--duration-fast) var(--easing-hover),
+      border-color var(--duration-fast) var(--easing-hover);
+  }
+
+  .site-nav.site-nav--scrolled {
+    background-color: var(--color-background-primary);
+    border-bottom-color: var(--color-border-subtle);
+  }
+
+  .site-nav__inner {
+    position: relative;
+    z-index: 51;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 80px;
+  }
+
+  .site-nav__wordmark {
+    font-size: var(--text-h3-size);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+  }
+
+  .site-nav__links {
+    display: none;
+  }
+
+  .site-nav__links ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .site-nav__links a {
+    font-size: var(--text-nav-size);
+    font-weight: var(--text-nav-weight);
+    color: var(--color-text-primary);
+    padding-block: var(--space-1);
+    border-bottom: var(--border-width-hairline) solid transparent;
+    transition: border-color var(--duration-fast) var(--easing-hover);
+  }
+
+  .site-nav__links a:hover {
+    border-bottom-color: var(--color-accent-primary);
+  }
+
+  .site-nav__cta {
+    display: none;
+  }
+
+  .site-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-inline-start: auto;
+  }
+
+  .site-nav__toggle-bars {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 14px;
+  }
+
+  .site-nav__toggle-bars span {
+    position: absolute;
+    inset-inline: 0;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: transform var(--duration-fast) var(--easing-hover),
+      opacity var(--duration-fast) var(--easing-hover);
+  }
+
+  .site-nav__toggle-bars span:nth-child(1) {
+    top: 0;
+  }
+
+  .site-nav__toggle-bars span:nth-child(2) {
+    top: 6px;
+  }
+
+  .site-nav__toggle-bars span:nth-child(3) {
+    top: 12px;
+  }
+
+  .site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars span:nth-child(1) {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+
+  .site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bars span:nth-child(3) {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-8) var(--container-margin-mobile) var(--space-4);
+    background-color: var(--color-background-primary);
+  }
+
+  .nav-overlay[data-open="false"] {
+    display: none;
+  }
+
+  .nav-overlay__links ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .nav-overlay__links a {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    padding-block: var(--space-1);
+  }
+
+  .nav-overlay__cta-button {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .site-nav__links {
+      display: block;
+    }
+
+    .site-nav__cta {
+      display: block;
+    }
+
+    .site-nav__toggle,
+    .nav-overlay {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById("site-nav");
+  const toggle = document.getElementById("nav-toggle");
+  const overlay = document.getElementById("nav-overlay");
+
+  const SCROLL_THRESHOLD = 80;
+
+  const updateScrollState = () => {
+    if (!header) return;
+    header.classList.toggle("site-nav--scrolled", window.scrollY > SCROLL_THRESHOLD);
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateScrollState();
+        ticking = false;
+      });
+    },
+    { passive: true },
+  );
+  updateScrollState();
+
+  if (toggle && overlay) {
+    const getFocusable = (): HTMLElement[] =>
+      Array.from(overlay.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"));
+
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+      if (event.key === "Tab") {
+        const focusable = getFocusable();
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    const openMenu = () => {
+      overlay.dataset.open = "true";
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
+      document.documentElement.style.overflow = "hidden";
+      const focusable = getFocusable();
+      focusable[0]?.focus();
+      document.addEventListener("keydown", onKeydown);
+    };
+
+    const closeMenu = (options: { restoreFocus?: boolean } = {}) => {
+      const { restoreFocus = true } = options;
+      overlay.dataset.open = "false";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+      document.documentElement.style.overflow = "";
+      document.removeEventListener("keydown", onKeydown);
+      if (restoreFocus) toggle.focus();
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = overlay.dataset.open === "true";
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    overlay.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => closeMenu({ restoreFocus: false }));
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024 && overlay.dataset.open === "true") {
+        closeMenu({ restoreFocus: false });
+      }
+    });
+  }
+</script>

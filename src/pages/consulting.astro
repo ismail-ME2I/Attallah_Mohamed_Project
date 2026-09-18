@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ConsultingHero from "../components/consulting/ConsultingHero.astro";
+import ConsultingAreas from "../components/consulting/ConsultingAreas.astro";
+import ConversationTopics from "../components/consulting/ConversationTopics.astro";
+import ConsultingProjectProof from "../components/consulting/ConsultingProjectProof.astro";
+import ConsultingAudience from "../components/consulting/ConsultingAudience.astro";
+import CTASection from "../components/ui/CTASection.astro";
+---
+
+<BaseLayout
+  title="Technical Consulting & Advisory — Mohammed Attallah"
+  description="Technical conversations for real-world challenges across automation, substation systems, RTU/SCADA, IEC 61850, and data center automation. Scope & availability to be confirmed."
+>
+  <ConsultingHero />
+  <ConsultingAreas />
+  <ConversationTopics />
+  <ConsultingProjectProof />
+  <ConsultingAudience />
+  <CTASection
+    heading="Have a Technical Challenge to Discuss?"
+    qualifier="(scope & availability to be confirmed)"
+    paragraph="If you are working through a real automation or integration challenge, start a conversation and see whether Mohammed's experience is relevant to the problem."
+    ctaLabel="Discuss a Technical Challenge"
+    ctaHref="/contact"
+    ctaVariant="primary"
+  />
+</BaseLayout>

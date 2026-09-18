@@ -1,0 +1,97 @@
+---
+export interface Pillar {
+  title: string;
+  terms: string[];
+}
+
+interface Props {
+  pillars: Pillar[];
+}
+
+const { pillars } = Astro.props;
+---
+
+<ol class="expertise-pillars">
+  {
+    pillars.map((pillar, index) => (
+      <li class="expertise-pillars__item">
+        <span class="expertise-pillars__number">{String(index + 1).padStart(2, "0")}</span>
+        <h3 class="expertise-pillars__title">{pillar.title}</h3>
+        <p class="expertise-pillars__terms">{pillar.terms.join(" · ")}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  /*
+    Editorial expertise pillars — homepage Consulting section only.
+    Deliberately not the shared ExpertiseTags component (which stays
+    untouched for About/Consulting-page/Academy use): three engineering
+    categories, not a tag cloud.
+  */
+  .expertise-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-pillars__item {
+    padding-block: var(--space-3);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+    transition: background-color var(--duration-fast) var(--easing-hover);
+  }
+
+  .expertise-pillars__item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .expertise-pillars__number {
+    display: block;
+    font-family: var(--font-data);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    color: var(--color-accent-primary);
+  }
+
+  .expertise-pillars__title {
+    margin-top: var(--space-1);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .expertise-pillars__terms {
+    max-width: 40ch;
+    margin-top: var(--space-1);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .expertise-pillars {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: var(--space-5);
+    }
+
+    .expertise-pillars__item {
+      padding-block: 0;
+      padding-inline-start: var(--space-5);
+      border-top: none;
+      border-left: var(--border-width-hairline) solid var(--border-color-default);
+    }
+
+    .expertise-pillars__item:first-child {
+      padding-inline-start: 0;
+      border-left: none;
+    }
+  }
+
+  @media (hover: hover) {
+    .expertise-pillars__item:hover .expertise-pillars__number {
+      color: var(--color-accent-primary-hover);
+    }
+  }
+</style>

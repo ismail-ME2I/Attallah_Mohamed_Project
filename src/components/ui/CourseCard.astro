@@ -1,0 +1,102 @@
+---
+import Button from "./Button.astro";
+import type { Course } from "../../data/courses";
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+---
+
+<article class="course-card">
+  <div class="course-card__image-frame">
+    <img
+      class="course-card__image"
+      src={course.image}
+      alt={course.imageAlt}
+      width="800"
+      height="450"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="course-card__body">
+    <h3 class="course-card__title">{course.title}</h3>
+    <p class="course-card__descriptor">{course.descriptor}</p>
+    <p class="course-card__metadata">{course.metadata}</p>
+    <Button href={course.ctaHref} variant="secondary" class="course-card__cta">
+      {course.ctaLabel}
+    </Button>
+  </div>
+</article>
+
+<style>
+  /* Course card — D06 Section 16. The only "card" surface used on the homepage. */
+  .course-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface-card);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-radius: var(--radius-default);
+    overflow: hidden;
+    transition: box-shadow var(--duration-fast) var(--easing-hover);
+  }
+
+  .course-card:hover {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .course-card__image-frame {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .course-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .course-card__body {
+    /* Sprint 04.1 polish: more internal room, matching the card's increased presence. */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  .course-card__title {
+    /* Weight bumped to 600 (matching H1/H2) for more presence; size stays at
+       the H3 scale — no new type size introduced. */
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .course-card__descriptor {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  .course-card__metadata {
+    /* Body Small instead of Label (13px -> 14px) so metadata isn't
+       microscopic — also now consistent with FactStrip's own label size. */
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: var(--text-label-weight);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  /*
+    :global — Button.astro renders the <a>, so it carries Button's own scope
+    id, not this component's. An unscoped selector here would never match.
+  */
+  :global(.course-card__cta) {
+    align-self: flex-start;
+    margin-top: var(--space-1);
+  }
+</style>

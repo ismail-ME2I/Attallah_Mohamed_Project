@@ -1,0 +1,96 @@
+---
+import { consultingAreaGroups } from "../../data/consultingAreas";
+---
+
+<section class="consulting-areas reveal" data-reveal aria-labelledby="consulting-areas-heading">
+  <div class="container">
+    <h2 id="consulting-areas-heading" class="consulting-areas__heading">Areas of Technical Expertise</h2>
+    <div class="consulting-areas__groups">
+      {
+        consultingAreaGroups.map((group, index) => (
+          <div class="consulting-areas__group">
+            <span class="consulting-areas__group-index">{String(index + 1).padStart(2, "0")}</span>
+            <h3 class="consulting-areas__group-label">{group.group}</h3>
+            <p class="consulting-areas__group-items">{group.items.join(" · ")}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .consulting-areas {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .consulting-areas__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .consulting-areas__groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .consulting-areas__group {
+    padding-top: var(--space-3);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .consulting-areas__group:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .consulting-areas__group-index {
+    display: block;
+    font-family: var(--font-data);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    color: var(--color-accent-primary);
+  }
+
+  .consulting-areas__group-label {
+    margin-top: var(--space-1);
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-line);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-text-primary);
+  }
+
+  .consulting-areas__group-items {
+    margin-top: var(--space-2);
+    max-width: 32ch;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .consulting-areas__groups {
+      flex-direction: row;
+      gap: var(--space-5);
+      margin-top: var(--space-5);
+    }
+
+    .consulting-areas__group {
+      flex: 1;
+      padding-top: 0;
+      padding-left: var(--space-4);
+      border-top: none;
+      border-left: var(--border-width-hairline) solid var(--border-color-default);
+    }
+
+    .consulting-areas__group:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+  }
+</style>

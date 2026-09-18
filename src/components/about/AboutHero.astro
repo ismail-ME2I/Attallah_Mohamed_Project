@@ -1,0 +1,136 @@
+---
+const headline = "15+ Years of Automation Experience, From Industrial Systems to Data Centers.";
+const supporting =
+  "This page traces Mohammed's path through substation automation, industrial control systems, and data center automation — the field experience behind Easy Automation Academy and his openness to technical consulting conversations.";
+
+// Same approved editorial portrait used on the homepage Introduction section
+// (temporary demo asset — see public/images/portrait/). About is its
+// primary, larger placement per the approved visual direction.
+const portraitSrc = "/images/portrait/mohammed-attallah-automation-technical-leader.avif";
+---
+
+<section class="about-hero reveal" data-reveal aria-labelledby="about-hero-heading">
+  <div class="container">
+    <div class="about-hero__grid">
+      <div class="about-hero__content">
+        <h1 id="about-hero-heading" class="about-hero__headline">{headline}</h1>
+        <p class="about-hero__supporting">{supporting}</p>
+        <p class="about-hero__credential">
+          <span class="about-hero__credential-role">Datacenter Automation Technical Leader</span>
+          <span class="about-hero__credential-org">Schneider Electric · Seville, Spain</span>
+        </p>
+      </div>
+
+      <div class="about-hero__portrait">
+        <img
+          class="about-hero__image"
+          src={portraitSrc}
+          alt="Mohammed Attallah, Automation Technical Leader"
+          width="1000"
+          height="1250"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-hero {
+    padding-block: calc(var(--space-5) + 80px) var(--space-4);
+  }
+
+  .about-hero__grid {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-4);
+  }
+
+  .about-hero__headline {
+    max-width: 20ch;
+    font-size: var(--text-h1-size);
+    line-height: var(--text-h1-line);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    color: var(--color-text-primary);
+  }
+
+  .about-hero__supporting {
+    max-width: 60ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-secondary);
+  }
+
+  .about-hero__credential {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: var(--border-width-hairline) solid var(--border-color-default);
+  }
+
+  .about-hero__credential-role {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .about-hero__credential-org {
+    font-family: var(--font-data);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    color: var(--color-text-muted);
+  }
+
+  .about-hero__portrait {
+    width: 220px;
+  }
+
+  .about-hero__image {
+    display: block;
+    width: 100%;
+    height: 275px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 768px) {
+    .about-hero__portrait {
+      width: 280px;
+    }
+
+    .about-hero__image {
+      height: 350px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-hero {
+      padding-block: calc(var(--space-6) + 80px) var(--space-5);
+    }
+
+    .about-hero__grid {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .about-hero__content {
+      flex: 1;
+    }
+
+    .about-hero__portrait {
+      flex: 0 0 360px;
+      width: 360px;
+    }
+
+    .about-hero__image {
+      height: 450px;
+    }
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import { courseDetail } from "../../data/courseDetail";
+---
+
+<section class="why-engineers reveal" data-reveal aria-labelledby="why-engineers-heading">
+  <div class="container">
+    <h2 id="why-engineers-heading" class="why-engineers__heading">Why Engineers Like This Course</h2>
+    <div class="why-engineers__quote">
+      {courseDetail.whyEngineersLikeIt.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-engineers {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .why-engineers__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .why-engineers__quote {
+    max-width: 65ch;
+    margin-top: var(--space-3);
+    padding-left: var(--space-3);
+    border-left: 2px solid var(--color-accent-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .why-engineers__quote p {
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: 1024px) {
+    .why-engineers__quote {
+      margin-top: var(--space-4);
+    }
+  }
+</style>

@@ -1,0 +1,145 @@
+---
+const paragraph =
+  "For 15+ years, Mohammed Attallah has worked across substation automation, IEC 61850, and data center systems — most recently as Datacenter Automation Technical Leader at Schneider Electric. That experience now shapes Easy Automation Academy, and shows up in his openness to real technical consulting conversations.";
+
+// Temporary demo portrait — see public/images/portrait/. Sized generically
+// (no hardcoded intrinsic-dimension assumptions beyond the AVIF's own
+// width/height attributes) so this can be swapped for a production portrait
+// without touching the layout.
+const portraitSrc = "/images/portrait/mohammed-attallah-automation-technical-leader.avif";
+---
+
+<section class="core-positioning reveal" data-reveal aria-label="Core positioning">
+  <div class="container">
+    <div class="core-positioning__grid">
+      <div class="core-positioning__portrait">
+        <img
+          class="core-positioning__image"
+          src={portraitSrc}
+          alt="Mohammed Attallah, Automation Technical Leader"
+          width="1000"
+          height="1250"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="core-positioning__caption">
+          <span class="core-positioning__caption-name">Mohammed Attallah</span>
+          <span class="core-positioning__caption-role">Automation Technical Leader</span>
+        </p>
+      </div>
+      <div class="core-positioning__statement">
+        <p class="core-positioning__label">About Mohammed</p>
+        <p class="core-positioning__paragraph">{paragraph}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .core-positioning {
+    scroll-margin-top: 80px;
+    border-block: var(--border-width-hairline) solid var(--border-color-default);
+    padding-block: var(--space-5);
+  }
+
+  .core-positioning__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .core-positioning__portrait {
+    width: 180px;
+  }
+
+  .core-positioning__image {
+    display: block;
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  .core-positioning__caption {
+    margin-top: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .core-positioning__caption-name {
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: var(--text-label-weight);
+    color: var(--color-text-primary);
+  }
+
+  .core-positioning__caption-role {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted);
+  }
+
+  .core-positioning__label {
+    margin-bottom: var(--space-1);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    font-weight: var(--text-label-weight);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+  }
+
+  .core-positioning__paragraph {
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    font-weight: var(--text-body-lg-weight);
+    color: var(--color-text-primary);
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .core-positioning__grid {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .core-positioning {
+      padding-block: var(--space-6);
+    }
+
+    .core-positioning__portrait {
+      flex: 0 0 220px;
+      width: 220px;
+    }
+
+    .core-positioning__image {
+      height: 275px;
+    }
+
+    .core-positioning__statement {
+      flex: 1;
+      max-width: 640px;
+    }
+
+    .core-positioning__paragraph {
+      font-size: var(--text-h3-size);
+      line-height: var(--text-h3-line);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .core-positioning {
+      padding-block: var(--space-7);
+    }
+
+    .core-positioning__portrait {
+      flex-basis: 260px;
+      width: 260px;
+    }
+
+    .core-positioning__image {
+      height: 325px;
+    }
+  }
+</style>

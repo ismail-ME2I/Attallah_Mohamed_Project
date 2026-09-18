@@ -1,0 +1,103 @@
+---
+import CourseCard from "../ui/CourseCard.astro";
+import { featuredCourse, moreCoursesLabel, moreCoursesSlotCount } from "../../data/courses";
+
+const brandStatement =
+  "Mohammed's field experience, turned into structured, practical courses for engineers who want to understand how automation systems actually work.";
+
+const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
+---
+
+<section class="academy reveal" data-reveal aria-labelledby="academy-heading">
+  <div class="container">
+    <h2 id="academy-heading" class="academy__heading">Easy Automation Academy</h2>
+    <p class="academy__statement">{brandStatement}</p>
+    <div class="academy__grid">
+      <CourseCard course={featuredCourse} />
+      {
+        placeholderSlots.map(() => (
+          <div class="academy__placeholder-card">
+            <span class="academy__placeholder-label">{moreCoursesLabel}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .academy {
+    /* Sprint 04.1 polish: halved so adjacent sections sum to D06's intended
+       space-7/space-6 section-to-section gap instead of doubling it. */
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .academy__heading {
+    display: inline-block;
+    padding-bottom: var(--space-2);
+    border-bottom: var(--border-width-hairline) solid var(--color-accent-primary);
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .academy__statement {
+    max-width: var(--container-reading);
+    margin-top: var(--space-3);
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-primary);
+  }
+
+  .academy__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .academy__placeholder-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6) var(--space-3);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-radius: var(--radius-default);
+    text-align: center;
+  }
+
+  .academy__placeholder-label {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .academy__grid {
+      /*
+        Sprint 04.1 polish: the featured course gets more width/visual
+        presence than the two placeholder slots, reinforcing that they are
+        secondary — an asymmetric, editorial-curated row rather than three
+        equal marketplace tiles.
+      */
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .academy {
+      padding-block: var(--space-5);
+    }
+
+    .academy__statement {
+      margin-top: var(--space-4);
+    }
+
+    .academy__grid {
+      margin-top: var(--space-6);
+    }
+  }
+</style>

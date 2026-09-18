@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AcademyHero from "../components/academy/AcademyHero.astro";
+import LearningPhilosophy from "../components/academy/LearningPhilosophy.astro";
+import FeaturedCourse from "../components/academy/FeaturedCourse.astro";
+import RealWorldContext from "../components/academy/RealWorldContext.astro";
+import AcademyAudience from "../components/academy/AcademyAudience.astro";
+import CTASection from "../components/ui/CTASection.astro";
+---
+
+<BaseLayout
+  title="Easy Automation Academy — Mohammed Attallah"
+  description="Practical automation learning, built from real-world engineering experience. Easy Automation Academy is the educational pillar of Mohammed Attallah's automation expertise."
+>
+  <AcademyHero />
+  <LearningPhilosophy />
+  <FeaturedCourse />
+  <RealWorldContext />
+  <AcademyAudience />
+  <CTASection
+    heading="Learn from Real-World Automation Experience"
+    paragraph="The Academy is built around Mohammed's experience across industrial and energy automation, substation systems, RTU/SCADA, and data center automation."
+    ctaLabel="About Mohammed"
+    ctaHref="/about"
+    ctaVariant="secondary"
+  />
+  <CTASection
+    heading="Have a Question About the Academy?"
+    paragraph="Get in touch if you'd like to discuss the courses or the technical topics covered."
+    ctaLabel="Get in Touch"
+    ctaHref="/contact"
+    ctaVariant="secondary"
+  />
+</BaseLayout>

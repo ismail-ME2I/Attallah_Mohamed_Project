@@ -1,0 +1,39 @@
+---
+const paragraph =
+  "Courses are built around real project files, protocol analysis, and hands-on exercises — not abstract theory alone. Instruction is in Arabic with English technical terminology, reflecting how these systems are actually discussed and documented in the field, with explanations grounded in engineering practice.";
+---
+
+<section class="learning-philosophy reveal" data-reveal aria-labelledby="learning-philosophy-heading">
+  <div class="container">
+    <h2 id="learning-philosophy-heading" class="learning-philosophy__heading">From Concepts to Real Systems</h2>
+    <p class="learning-philosophy__paragraph">{paragraph}</p>
+  </div>
+</section>
+
+<style>
+  .learning-philosophy {
+    scroll-margin-top: 80px;
+    padding-block: var(--space-4);
+  }
+
+  .learning-philosophy__heading {
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-line);
+    font-weight: var(--text-h2-weight);
+    color: var(--color-text-primary);
+  }
+
+  .learning-philosophy__paragraph {
+    max-width: 65ch;
+    margin-top: var(--space-3);
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: 1024px) {
+    .learning-philosophy__paragraph {
+      margin-top: var(--space-4);
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1200" role="img" aria-labelledby="heroPlaceholderTitle">
+  <title id="heroPlaceholderTitle">Placeholder graphic — real project photography pending</title>
+
+  <rect width="960" height="1200" fill="#1B1F23" />
+
+  <!-- Faint registration / drafting marks -->
+  <g stroke="#F6F7F8" stroke-width="1" opacity="0.08">
+    <line x1="0" y1="120" x2="960" y2="120" />
+    <line x1="0" y1="1080" x2="960" y2="1080" />
+    <line x1="120" y1="0" x2="120" y2="1200" />
+    <line x1="840" y1="0" x2="840" y2="1200" />
+  </g>
+
+  <!-- Abstract single-line-diagram fragment (not a real schematic, decorative only) -->
+  <g stroke="#B4642E" stroke-width="2" fill="none" opacity="0.55" stroke-linecap="round">
+    <path d="M160 620 H420" />
+    <path d="M420 620 V420" />
+    <path d="M420 420 H700" />
+    <path d="M700 420 V760" />
+    <path d="M700 760 H820" />
+    <path d="M420 620 V860" />
+    <path d="M420 860 H260" />
+    <circle cx="160" cy="620" r="8" fill="#B4642E" stroke="none" />
+    <circle cx="700" cy="420" r="8" fill="#B4642E" stroke="none" />
+    <circle cx="820" cy="760" r="8" fill="#B4642E" stroke="none" />
+    <circle cx="260" cy="860" r="8" fill="#B4642E" stroke="none" />
+    <rect x="392" y="392" width="56" height="56" opacity="0.9" />
+  </g>
+
+  <g stroke="#F6F7F8" stroke-width="1" opacity="0.12">
+    <line x1="160" y1="620" x2="160" y2="1200" />
+    <line x1="820" y1="0" x2="820" y2="760" />
+  </g>
+
+  <!-- Explicit placeholder label -->
+  <g font-family="'IBM Plex Mono', 'SF Mono', monospace" fill="#F6F7F8">
+    <text x="80" y="1000" font-size="28" letter-spacing="1" opacity="0.9">PLACEHOLDER</text>
+    <text x="80" y="1034" font-size="15" opacity="0.6">Real project photography pending</text>
+  </g>
+
+  <g stroke="#F6F7F8" opacity="0.25" stroke-width="1">
+    <line x1="80" y1="960" x2="240" y2="960" />
+  </g>
+</svg>
