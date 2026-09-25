@@ -14,7 +14,17 @@ const ctaLabel = "Start a Conversation";
 
 <header class="site-nav" id="site-nav">
   <div class="site-nav__inner container">
-    <a href="/" class="site-nav__wordmark">Mohammed Attallah</a>
+    <a href="/" class="site-nav__brand">
+      <img
+        class="site-nav__logo"
+        src="/images/brand/mohamed-attallah-logo.png"
+        alt="Mohamed Attallah"
+        width="800"
+        height="243"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
 
     <nav class="site-nav__links" aria-label="Primary">
       <ul>
@@ -29,7 +39,7 @@ const ctaLabel = "Start a Conversation";
     </nav>
 
     <div class="site-nav__cta">
-      <Button href={ctaHref} variant="secondary">{ctaLabel}</Button>
+      <Button href={ctaHref} variant="primary">{ctaLabel}</Button>
     </div>
 
     <button
@@ -93,11 +103,18 @@ const ctaLabel = "Start a Conversation";
     min-height: 80px;
   }
 
-  .site-nav__wordmark {
-    font-size: var(--text-h3-size);
-    font-weight: 600;
-    color: var(--color-text-primary);
-    white-space: nowrap;
+  .site-nav__brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .site-nav__logo {
+    /* Full logo at every breakpoint, scaled down on mobile so it stays
+       compact next to the hamburger toggle without overflowing; steps up
+       to its previous desktop size at the nav's own row breakpoint. */
+    height: 28px;
+    width: auto;
   }
 
   .site-nav__links {
@@ -224,6 +241,10 @@ const ctaLabel = "Start a Conversation";
     .site-nav__toggle,
     .nav-overlay {
       display: none;
+    }
+
+    .site-nav__logo {
+      height: 36px;
     }
   }
 </style>

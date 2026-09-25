@@ -1,12 +1,50 @@
 ---
 const paragraph =
   "Courses are built around real project files, protocol analysis, and hands-on exercises — not abstract theory alone. Instruction is in Arabic with English technical terminology, reflecting how these systems are actually discussed and documented in the field, with explanations grounded in engineering practice.";
+
+/*
+  Restatements of concepts already in `paragraph` above (real project files,
+  protocol analysis, hands-on exercises vs. abstract theory) — not new
+  claims or course content.
+*/
+const learningApproach = [
+  {
+    title: "Real Project Files",
+    text: "Working from actual project documentation and engineering material.",
+  },
+  {
+    title: "Protocol Analysis",
+    text: "Understanding how industrial communication and protocols are analyzed.",
+  },
+  {
+    title: "Hands-On Exercises",
+    text: "Learning through practical exercises rather than abstract theory alone.",
+  },
+];
 ---
 
 <section class="learning-philosophy reveal" data-reveal aria-labelledby="learning-philosophy-heading">
   <div class="container">
-    <h2 id="learning-philosophy-heading" class="learning-philosophy__heading">From Concepts to Real Systems</h2>
-    <p class="learning-philosophy__paragraph">{paragraph}</p>
+    <div class="learning-philosophy__inner">
+      <div class="learning-philosophy__content">
+        <h2 id="learning-philosophy-heading" class="learning-philosophy__heading">From Concepts to Real Systems</h2>
+        <p class="learning-philosophy__paragraph">{paragraph}</p>
+      </div>
+
+      <div class="learning-philosophy__panel">
+        <p class="learning-philosophy__panel-label">Learning Approach</p>
+        <ul class="learning-philosophy__panel-list">
+          {
+            learningApproach.map((item) => (
+              <li class="learning-philosophy__panel-item">
+                <p class="learning-philosophy__panel-item-title">{item.title}</p>
+                <p class="learning-philosophy__panel-item-text">{item.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -31,9 +69,62 @@ const paragraph =
     color: var(--color-text-primary);
   }
 
+  .learning-philosophy__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .learning-philosophy__panel {
+    /* Lighter than "Technical Scope": a hairline border plus a thin accent
+       rule instead of a filled shaded background, restrained padding, and
+       plain text rows instead of chips — reads as a small summary, not a
+       second boxed credibility panel. Capped narrower than the full
+       column (same proportion already used by the panels in the sections
+       above) so it stays a deliberate block below the paragraph rather
+       than stretching edge to edge. */
+    max-width: calc(var(--container-max) * 0.75);
+    padding: var(--space-3);
+    border: var(--border-width-hairline) solid var(--border-color-default);
+    border-left: 2px solid var(--color-accent-primary);
+    border-radius: var(--radius-default);
+  }
+
+  .learning-philosophy__panel-label {
+    font-family: var(--font-data);
+    font-size: var(--text-label-size);
+    line-height: var(--text-label-line);
+    color: var(--color-text-muted);
+  }
+
+  .learning-philosophy__panel-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .learning-philosophy__panel-item-title {
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .learning-philosophy__panel-item-text {
+    margin-top: var(--space-1);
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+    color: var(--color-text-secondary);
+  }
+
   @media (min-width: 1024px) {
     .learning-philosophy__paragraph {
       margin-top: var(--space-4);
+    }
+
+    .learning-philosophy__panel {
+      padding: var(--space-4);
     }
   }
 </style>

@@ -23,9 +23,8 @@ export const featuredCourse: Course = {
   descriptor:
     "Practical substation automation training — from IEC 61850 fundamentals to real project files, SCD/CID work, and protocol analysis.",
   metadata: "10+ Hours · Arabic (English Terminology)",
-  image: "/images/academy/course-placeholder.svg",
-  imageAlt:
-    "Placeholder graphic marking the space reserved for the real course cover image, to be added once the asset is available.",
+  image: "/images/academy/easy-automation-academy-iec-61850-iec-104-course.jpg",
+  imageAlt: "Easy Automation Academy course visual for Substation Automation, IEC 61850 and IEC 104",
   ctaHref: "/easy-automation-academy/substation-automation-sas",
   ctaLabel: "View Course",
 };

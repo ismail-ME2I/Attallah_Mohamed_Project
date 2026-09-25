@@ -48,14 +48,29 @@ const { course } = Astro.props;
   }
 
   .course-card__image-frame {
-    aspect-ratio: 16 / 9;
+    /* Matches the course visual's own natural ratio (1490 / 1055) instead
+       of a generic 16:9 frame, so the certificate fills the available
+       space without the wider frame ratio letterboxing its sides. */
+    aspect-ratio: 1490 / 1055;
     overflow: hidden;
+    box-sizing: border-box;
+    /* Small breathing margin so the certificate's own outer border never
+       sits flush against the frame's edge. */
+    padding: var(--space-1);
+    /* Letterboxing background when the course image's own ratio differs
+       from the frame's, so any bars stay seamless rather than showing a
+       raw edge. */
+    background-color: var(--color-background-secondary);
   }
 
   .course-card__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* contain, not cover: the course visual is a real, edge-detailed course
+       graphic (title, signature, tagline near its edges) — a cover-crop
+       would cut into it whenever the frame's ratio differs from the
+       artwork's. contain always shows it complete. */
+    object-fit: contain;
   }
 
   .course-card__body {

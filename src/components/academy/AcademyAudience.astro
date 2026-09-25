@@ -26,6 +26,12 @@ import { academyAudience } from "../../data/academyAudience";
   }
 
   .academy-audience__tags {
+    /* Deliberately no border/background/padding here, unlike the Technical
+       Scope panel above — a lighter, plain chip group gives this section a
+       different visual role while staying aligned to the same wide content
+       column (three-quarters of the page's max content width, matching
+       the panel above) for a consistent overall composition. */
+    max-width: calc(var(--container-max) * 0.75);
     margin-top: var(--space-3);
   }
 

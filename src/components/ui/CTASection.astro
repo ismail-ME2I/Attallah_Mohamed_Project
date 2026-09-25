@@ -8,13 +8,18 @@ interface Props {
   ctaLabel: string;
   ctaHref: string;
   ctaVariant?: "primary" | "secondary";
+  wide?: boolean;
 }
 
-const { heading, qualifier, paragraph, ctaLabel, ctaHref, ctaVariant = "secondary" } = Astro.props;
+const { heading, qualifier, paragraph, ctaLabel, ctaHref, ctaVariant = "secondary", wide = false } = Astro.props;
 const headingId = `cta-heading-${heading.replace(/\s+/g, "-").toLowerCase()}`;
 ---
 
-<section class="cta-section reveal" data-reveal aria-labelledby={headingId}>
+<section
+  class:list={["cta-section", "reveal", { "cta-section--wide": wide }]}
+  data-reveal
+  aria-labelledby={headingId}
+>
   <div class="container">
     <div class="cta-section__heading-row">
       <h2 id={headingId} class="cta-section__heading">
@@ -62,6 +67,15 @@ const headingId = `cta-heading-${heading.replace(/\s+/g, "-").toLowerCase()}`;
     font-size: var(--text-body-size);
     line-height: var(--text-body-line);
     color: var(--color-text-primary);
+  }
+
+  /* Opt-in only (via the `wide` prop) — every other CTASection instance
+     keeps the default 60ch above untouched. Widens the reading measure
+     modestly (still within comfortable line-length range) so this
+     instance doesn't read as a narrow column in a much wider section,
+     without turning it into a full content-width block. */
+  .cta-section--wide .cta-section__paragraph {
+    max-width: 75ch;
   }
 
   :global(.cta-section__cta) {

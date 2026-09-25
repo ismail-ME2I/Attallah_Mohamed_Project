@@ -4,15 +4,50 @@ const supporting = "Practical automation learning, built from real-world enginee
 
 <section class="academy-hero reveal" data-reveal aria-labelledby="academy-hero-heading">
   <div class="container">
-    <h1 id="academy-hero-heading" class="academy-hero__heading">Easy Automation Academy</h1>
-    <p class="academy-hero__supporting">{supporting}</p>
-    <p class="academy-hero__credential">Built from Mohammed Attallah's field experience in industrial and energy automation.</p>
+    <div class="academy-hero__inner">
+      <div class="academy-hero__content">
+        <h1 id="academy-hero-heading" class="academy-hero__heading">Easy Automation Academy</h1>
+        <p class="academy-hero__supporting">{supporting}</p>
+        <p class="academy-hero__credential">Built from Mohammed Attallah's field experience in industrial and energy automation.</p>
+      </div>
+
+      <div class="academy-hero__media">
+        <img
+          class="academy-hero__image"
+          src="/images/academy/easy-automation-academy-logo-industrial-automation.png"
+          alt="Easy Automation Academy logo for industrial automation education"
+          width="1254"
+          height="1254"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
   .academy-hero {
     padding-block: calc(var(--space-6) + 80px) var(--space-4);
+  }
+
+  .academy-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .academy-hero__media {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-4);
+  }
+
+  .academy-hero__image {
+    width: 78%;
+    max-width: 320px;
+    height: auto;
   }
 
   .academy-hero__heading {
@@ -31,14 +66,36 @@ const supporting = "Practical automation learning, built from real-world enginee
     margin-top: var(--space-3);
     font-size: var(--text-body-lg-size);
     line-height: var(--text-body-lg-line);
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
   }
 
   .academy-hero__credential {
-    margin-top: var(--space-2);
-    font-size: var(--text-body-sm-size);
-    line-height: var(--text-body-sm-line);
-    color: var(--color-text-muted);
+    margin-top: var(--space-4);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .academy-hero__inner {
+      /* Capped narrower than the section's own container so the two
+         columns sit close together as one compact composition, instead
+         of stretching edge-to-edge and leaving dead space between them. */
+      max-width: 1040px;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .academy-hero__media {
+      margin-top: 0;
+      justify-content: center;
+    }
+
+    .academy-hero__image {
+      width: 75%;
+      max-width: 420px;
+    }
   }
 
   @media (min-width: 1024px) {

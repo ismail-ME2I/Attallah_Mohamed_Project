@@ -35,9 +35,8 @@ export const academyCourses: AcademyCourse[] = [
     format: "Recorded video course · 10+ hours · 3 hands-on exercises · Quizzes · Certificate",
     topics: ["IEC 61850", "IEC 60870-5-104", "SCD/CID Files", "Protocol Analysis (Wireshark)", "Hands-On Exercises"],
     status: "available",
-    cover: "/images/academy/course-placeholder.svg",
-    coverAlt:
-      "Placeholder graphic marking the space reserved for the real course cover image, to be added once the asset is available.",
+    cover: "/images/academy/easy-automation-academy-iec-61850-iec-104-course.jpg",
+    coverAlt: "Easy Automation Academy course visual for Substation Automation, IEC 61850 and IEC 104",
     href: "/easy-automation-academy/substation-automation-sas",
   },
 ];

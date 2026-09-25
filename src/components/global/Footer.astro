@@ -22,7 +22,17 @@ const socialLinks = [
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__row">
-      <span class="site-footer__wordmark">Mohammed Attallah</span>
+      <div class="site-footer__brand">
+        <img
+          class="site-footer__logo"
+          src="/images/brand/mohamed-attallah-logo.png"
+          alt="Mohamed Attallah"
+          width="800"
+          height="243"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <ul>
           {
@@ -73,11 +83,17 @@ const socialLinks = [
     gap: var(--space-2);
   }
 
-  .site-footer__wordmark {
-    font-size: var(--text-label-size);
-    line-height: var(--text-label-line);
-    font-weight: 600;
-    color: var(--color-text-primary);
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .site-footer__logo {
+    /* Full logo at every breakpoint; smaller on mobile so it stays
+       subtle and doesn't dominate the footer's narrow column, stepping
+       up slightly at the footer's own row breakpoint below. */
+    height: 18px;
+    width: auto;
   }
 
   .site-footer__nav ul {
@@ -134,6 +150,10 @@ const socialLinks = [
   @media (min-width: 768px) {
     .site-footer__inner {
       padding-block: var(--space-5);
+      /* Scales up alongside the padding bump above so the two rows get
+         proportionally more breathing room at desktop instead of staying
+         fixed while the section around them grows. */
+      gap: var(--space-4);
     }
 
     .site-footer__row {
@@ -146,6 +166,10 @@ const socialLinks = [
       flex-direction: row-reverse;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .site-footer__logo {
+      height: 22px;
     }
   }
 </style>

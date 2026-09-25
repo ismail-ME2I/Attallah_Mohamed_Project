@@ -17,8 +17,8 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
           class="featured-course__image"
           src={course.cover}
           alt={course.coverAlt}
-          width="960"
-          height="600"
+          width="1490"
+          height="1055"
           loading="eager"
           decoding="async"
         />
@@ -71,11 +71,14 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
   }
 
   .featured-course__media {
-    aspect-ratio: 16 / 10;
+    /* Matches the course visual's own natural ratio (1490 / 1055) so the
+       media area is sized from the artwork itself, not an arbitrary frame
+       ratio that would letterbox it. */
+    aspect-ratio: 1490 / 1055;
     overflow: hidden;
-    /* Matches the placeholder SVG's own background fill so object-fit:
-       contain letterboxing (when the container ratio differs from the
-       artwork's) is seamless rather than showing visible bars. */
+    /* Letterboxing background when the container ratio differs from the
+       course visual's own ratio, so any bars stay seamless rather than
+       showing raw white/transparent edges. */
     background-color: var(--color-background-secondary);
   }
 
@@ -83,10 +86,10 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
     width: 100%;
     height: 100%;
     /*
-      contain, not cover: the placeholder artwork's "PLACEHOLDER" caption
-      is anchored bottom-left, not centered, so a centered cover-crop cuts
-      through it whenever the container's aspect ratio differs from the
-      artwork's. contain always shows the complete artwork intact.
+      contain, not cover: the course visual's title, signature and tagline
+      run close to its edges, so a centered cover-crop would cut into them
+      whenever the container's aspect ratio differs from the artwork's.
+      contain always shows the complete visual intact, at every breakpoint.
     */
     object-fit: contain;
   }
@@ -103,6 +106,10 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
     line-height: var(--text-h2-line);
     font-weight: 600;
     color: var(--color-text-primary);
+    /* Balances line lengths across wraps (e.g. avoids a lone orphan word on
+       its own line) on the browsers that support it; a harmless no-op
+       fallback to normal wrapping elsewhere. */
+    text-wrap: balance;
   }
 
   .featured-course__description {
@@ -131,6 +138,10 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
 
   :global(.featured-course__cta) {
     align-self: flex-start;
+    /* Full-width on mobile so the primary CTA is comfortable to tap;
+       reverted to its natural content width at the desktop breakpoint
+       below. */
+    width: 100%;
     margin-top: var(--space-2);
   }
 
@@ -165,13 +176,30 @@ const placeholderSlots = Array.from({ length: moreCoursesSlotCount });
 
     .featured-course__media {
       flex: 0 0 42%;
-      aspect-ratio: auto;
+      /* Keep the visual's own ratio instead of stretching to match the
+         text column's height — align-self overrides the row's default
+         stretch so the media area's height follows the artwork, not the
+         (much taller) body copy. */
+      aspect-ratio: 1490 / 1055;
+      align-self: flex-start;
+      /* Top-anchored, then nudged down by the same amount as the body's
+         own top padding, so the certificate's top edge lines up with the
+         course heading's top edge instead of the row's bare top. Paired
+         with a rightward translateX to tighten the visual gap to the
+         course content — layout (flex basis, width, position) is
+         untouched; this only shifts the painted position. */
+      margin-top: var(--space-5);
+      transform: translateX(var(--space-2));
     }
 
     .featured-course__body {
       flex: 1;
       justify-content: center;
       padding: var(--space-5);
+    }
+
+    :global(.featured-course__cta) {
+      width: auto;
     }
 
     .featured-course__more {
